@@ -160,7 +160,9 @@ export function Header() {
   const location = useLocation();
 
   // Close the mobile drawer whenever the route changes.
-  useEffect(() => setMenuOpen(false), [location.pathname]);
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   return (
     <>

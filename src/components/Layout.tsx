@@ -70,7 +70,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
 
   // Every route change should start at the top of the new page.
-  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <>
