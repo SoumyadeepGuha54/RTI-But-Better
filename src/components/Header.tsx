@@ -179,16 +179,13 @@ export function Header() {
 
         <nav className={menuOpen ? "open" : ""} aria-label="Primary">
           {navItems.map((item) => {
-            if (!signedIn && (item.to === "/dashboard" || item.to === "/profile")) return null;
+            if (!signedIn && item.to === "/dashboard") return null;
             return (
               <NavLink key={item.to} to={item.to} end={item.to === "/"}>
                 {item.label}
               </NavLink>
             );
           })}
-          {signedIn && (
-            <NavLink to="/profile">Profile</NavLink>
-          )}
         </nav>
 
         <div className="header-tools">
