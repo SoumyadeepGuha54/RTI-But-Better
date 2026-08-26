@@ -57,11 +57,11 @@ export function Home() {
           First Appeal when the reply falls short.
         </p>
         <div className="hero-actions">
-          <Link to="/file-rti" className="button">
+          <Link to={signedIn ? "/file-rti" : "/signin"} className="button">
             Start an application
             <ArrowRight size={17} aria-hidden />
           </Link>
-          <Link to="/track" className="text-link">
+          <Link to={signedIn ? "/track" : "/signin"} className="text-link">
             Already have a registration number? Track it
             <ArrowRight size={15} aria-hidden />
           </Link>
@@ -97,7 +97,7 @@ export function Home() {
             title="File an RTI application"
             text="Submit a new request for records held by a public authority."
             action="Start application"
-            to="/file-rti"
+            to={signedIn ? "/file-rti" : "/signin"}
             icon={<FileText size={18} aria-hidden />}
           />
           <ActionCard
@@ -105,7 +105,7 @@ export function Home() {
             title="Track an application"
             text="Check the current stage of an application with its registration number."
             action="Track application"
-            to="/track"
+            to={signedIn ? "/track" : "/signin"}
             icon={<Search size={18} aria-hidden />}
           />
           <ActionCard
@@ -113,7 +113,7 @@ export function Home() {
             title="File a First Appeal"
             text="Appeal to the First Appellate Authority against a refusal or silence."
             action="Start First Appeal"
-            to="/appeal"
+            to={signedIn ? "/appeal" : "/signin"}
             icon={<FileCheck2 size={18} aria-hidden />}
           />
         </div>

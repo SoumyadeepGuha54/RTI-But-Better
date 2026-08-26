@@ -1432,7 +1432,7 @@ footer p {
   border-bottom: 1px solid var(--line);
 }
 .faq-list article > button {
-  padding: 18px 0;
+  padding: 20px 4px;
   width: 100%;
   border: 0;
   background: none;
@@ -1440,6 +1440,13 @@ footer p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  color: inherit;
+  transition: color 0.15s ease;
+}
+.faq-list article > button:hover b {
+  color: var(--accent);
 }
 .faq-list small,
 .faq-list b {
@@ -1452,17 +1459,50 @@ footer p {
   color: #6a6c69;
 }
 .faq-list b {
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
   margin-top: 4px;
+  color: var(--ink);
+  transition: color 0.15s ease;
 }
-.faq-list article p {
-  font-size: 12px;
-  color: #555754;
-  max-width: 600px;
-  margin: 0 30px 20px 0;
+.faq-arrow {
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #f4f4f1;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, color 0.2s ease;
 }
-.flip {
+.faq-arrow.open {
   transform: rotate(180deg);
+  background: var(--ink);
+  color: #fff;
+}
+.faq-answer {
+  padding: 0 4px 22px;
+  max-width: 680px;
+  animation: faqUnfold 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.faq-answer p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #4a4c49;
+  margin: 0;
+}
+@keyframes faqUnfold {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .auth-page {
   display: grid;

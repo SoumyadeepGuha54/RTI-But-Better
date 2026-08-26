@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Info, X } from "lucide-react";
 import { Header } from "./Header";
-import { DEMO_EMAIL, DEMO_PASSWORD } from "../store/DemoStore";
+import { DEMO_EMAIL, DEMO_PASSWORD, useStore } from "../store/DemoStore";
 
 /**
  * A slim banner so a first-time visitor (a hackathon judge) can see the demo
@@ -39,6 +39,8 @@ function DemoBanner() {
 }
 
 function Footer() {
+  const { signedIn } = useStore();
+
   return (
     <footer className="site-footer">
       <div>
@@ -55,12 +57,12 @@ function Footer() {
         </p>
       </div>
       <div className="footer-links">
-        <Link to="/file-rti">File an RTI</Link>
-        <Link to="/track">Track application</Link>
-        <Link to="/appeal">First appeal</Link>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to={signedIn ? "/file-rti" : "/signin"}>File an RTI</Link>
+        <Link to={signedIn ? "/track" : "/signin"}>Track application</Link>
+        <Link to={signedIn ? "/appeal" : "/signin"}>First appeal</Link>
+        <Link to={signedIn ? "/dashboard" : "/signin"}>Dashboard</Link>
         <Link to="/help">Help centre</Link>
-        <Link to="/profile">Your profile</Link>
+        <Link to={signedIn ? "/profile" : "/signin"}>Your profile</Link>
       </div>
     </footer>
   );

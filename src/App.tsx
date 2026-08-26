@@ -32,6 +32,7 @@ import { Dashboard as DashboardPage } from "./pages/Dashboard";
 import { Track as TrackPage } from "./pages/Track";
 import { Profile as ProfilePage } from "./pages/Profile";
 import { SignIn as SignInPage } from "./pages/SignIn";
+import { HelpPage } from "./pages/Help";
 import { applicationStages, appealGrounds, canAppeal, reachedStageIndex } from "./lib/lifecycle";
 import { Timeline } from "./components/Timeline";
 
@@ -1037,8 +1038,6 @@ function AppealPage() {
   );
 }
 
-function HelpPage(){return <section className="help-page"><div className="help-hero"><span className="eyebrow"><span/> Help centre</span><h1>Answers that get you moving.</h1><p>Guidance for filing, tracking, payments and appeals in this mock portal.</p></div><div className="faq-list">{[["Getting started","What is this portal?","It is a hackathon prototype using mock data only."],["Filing an application","How do I choose an authority?","Search participating authorities, then select the one likely to hold the record."],["Payments","Will I be charged?","No. The payment screen is a visual simulation only."],["Tracking","How do I track a request?","Use its registration number and the demo verification code 123456."],["Appeals","When can I file an appeal?","Choose an eligible application in the appeal flow."]].map(([category,question,answer])=><article key={question}><button><span><small>{category}</small><b>{question}</b></span><ChevronRight size={17}/></button><p>{answer}</p></article>)}</div></section>}
-
 export default function App() {
   const { addApplication, notify, profile, signedIn } = useStore();
 
@@ -1046,20 +1045,50 @@ export default function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/file-rti" element={signedIn ? <FileRTI applicantStart={profile} onAdd={(app) => {
-                addApplication(app);
-                notify({
-                  title: app.status === "Draft" ? "Draft saved" : "Application submitted",
-                  message: `${app.registration} ${app.status === "Draft" ? "was saved as a draft." : "has been submitted successfully."}`,
-                  kind: app.status === 'Draft' ? 'draft' : 'submitted',
-                  href: `/applications/${encodeURIComponent(app.registration)}`
-                });
-              }}/>:<SignInPage/>}/>
-        <Route path="/track" element={<TrackPage />} />
-        <Route path="/appeal" element={<AppealPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/applications/:registration" element={<ApplicationDetails />} />
+        <Route
+          path="/file-rti"
+          element={
+            signedIn ? (
+              <FileRTI
+                applicantStart={profile}
+                onAdd={(app) => {
+                  addApplication(app);
+                  notify({
+                    title:
+                      app.status === "Draft"
+                        ? "Draft saved"
+                        : "Application submitted",
+                    message: `${app.registration} ${app.status === "Draft" ? "was saved as a draft." : "has been submitted successfully."}`,
+                    kind: app.status === "Draft" ? "draft" : "submitted",
+                    href: `/applications/${encodeURIComponent(app.registration)}`,
+                  });
+                }}
+              />
+            ) : (
+              <SignInPage />
+            )
+          }
+        />
+        <Route
+          path="/track"
+          element={signedIn ? <TrackPage /> : <SignInPage />}
+        />
+        <Route
+          path="/appeal"
+          element={signedIn ? <AppealPage /> : <SignInPage />}
+        />
+        <Route
+          path="/dashboard"
+          element={signedIn ? <DashboardPage /> : <SignInPage />}
+        />
+        <Route
+          path="/profile"
+          element={signedIn ? <ProfilePage /> : <SignInPage />}
+        />
+        <Route
+          path="/applications/:registration"
+          element={signedIn ? <ApplicationDetails /> : <SignInPage />}
+        />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/help" element={<HelpPage />} />
       </Routes>

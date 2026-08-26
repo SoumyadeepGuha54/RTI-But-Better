@@ -25,12 +25,17 @@ import { useStore } from "../store/DemoStore";
 import { initials, relativeTime } from "../lib/format";
 import type { Notification } from "../lib/types";
 
-const navItems = [
+const signedInNavItems = [
   { to: "/", label: "Home" },
-  { to: "/file-rti", label: "File RTI" },
   { to: "/dashboard", label: "Dashboard" },
+  { to: "/file-rti", label: "File RTI" },
   { to: "/track", label: "Track application" },
   { to: "/appeal", label: "First appeal" },
+  { to: "/help", label: "Help" },
+];
+
+const signedOutNavItems = [
+  { to: "/", label: "Home" },
   { to: "/help", label: "Help" },
 ];
 
@@ -178,14 +183,11 @@ export function Header() {
         </Link>
 
         <nav className={menuOpen ? "open" : ""} aria-label="Primary">
-          {navItems.map((item) => {
-            if (!signedIn && item.to === "/dashboard") return null;
-            return (
-              <NavLink key={item.to} to={item.to} end={item.to === "/"}>
-                {item.label}
-              </NavLink>
-            );
-          })}
+          {(signedIn ? signedInNavItems : signedOutNavItems).map((item) => (
+            <NavLink key={item.to} to={item.to} end={item.to === "/"}>
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
 
         <div className="header-tools">
