@@ -54,10 +54,24 @@ export function Profile() {
             />
           </label>
           <label className="field">
+            <span>Address Line 2</span>
+            <input
+              value={formData.address2}
+              onChange={(e) => setFormData({ ...formData, address2: e.target.value })}
+            />
+          </label>
+          <label className="field">
             <span>City</span>
             <input
               value={formData.city}
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+            />
+          </label>
+          <label className="field">
+            <span>State</span>
+            <input
+              value={formData.state}
+              onChange={(e) => setFormData({ ...formData, state: e.target.value })}
             />
           </label>
           <label className="field">

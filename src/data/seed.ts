@@ -7,14 +7,14 @@
 import type { Appeal, Application, Notification, Profile } from "../lib/types";
 
 export const demoProfile: Profile = {
-  name: "Soumy Prakash",
+  name: "Varun Mayya",
   email: "demo@example.com",
   phone: "9876543210",
-  address1: "212, Rajendra Nagar",
-  address2: "Near Community Hall",
-  city: "Patna",
-  state: "Bihar",
-  pin: "800016",
+  address1: "212, A.P.C. Rd.",
+  address2: "85, Patuli",
+  city: "Kolkata",
+  state: "West Bengal",
+  pin: "700108",
 };
 
 const applicantFromProfile = { ...demoProfile };

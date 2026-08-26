@@ -31,7 +31,7 @@ export const DEMO_PASSWORD = "demo1234";
 /** The one-time code the mock OTP step accepts. */
 export const DEMO_OTP = "123456";
 
-const STORAGE_KEY = "rti-online-demo/v2";
+const STORAGE_KEY = "rti-online-demo/v3";
 
 type Persisted = {
   signedIn: boolean;

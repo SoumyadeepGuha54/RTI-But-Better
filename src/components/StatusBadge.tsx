@@ -23,7 +23,6 @@ export function StatusBadge({
     <span
       className={`status status-${slug(status)}${size === "large" ? " status-large" : ""}`}
     >
-      <i aria-hidden />
       {status}
     </span>
   );

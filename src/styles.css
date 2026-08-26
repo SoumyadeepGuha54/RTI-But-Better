@@ -1030,7 +1030,7 @@ footer p {
 }
 .success-page h1 {
   font-size: 53px;
-  margin: 18px auto;
+  margin: 0 auto 20px;
 }
 .success-page > p {
   max-width: 500px;
@@ -1040,11 +1040,13 @@ footer p {
 }
 .success-page > .eyebrow {
   justify-content: center;
+  margin-top: 0;
+  margin-bottom: 26px;
 }
 .success-stamp {
   width: 76px;
   height: 76px;
-  margin: 0 auto;
+  margin: 0 auto 36px;
   background: var(--accent);
   color: #fff;
   display: grid;
@@ -1196,13 +1198,22 @@ footer p {
 .status {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  justify-content: center;
+  text-align: center;
   width: max-content;
-  padding: 4px 7px;
-  border-radius: 20px;
-  font-size: 9px;
+  min-height: 24px;
+  padding: 0 11px;
+  border-radius: 9999px;
+  font-size: 11px;
   font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
   white-space: nowrap;
+}
+.status-large {
+  min-height: 30px;
+  padding: 0 16px;
+  font-size: 13px;
 }
 .status b {
   font-size: 11px;
@@ -1215,11 +1226,13 @@ footer p {
   background: #fee2e2;
   color: #991b1b;
 }
-.status-submitted {
+.status-submitted,
+.status-appeal-submitted {
   background: #e0f2fe;
   color: #075985;
 }
-.status-under-review {
+.status-under-review,
+.status-appeal-under-review {
   background: #fef08a;
   color: #854d0e;
 }
@@ -1269,6 +1282,19 @@ footer p {
   line-height: 1.7;
   color: var(--muted);
   max-width: 420px;
+  margin-bottom: 24px;
+}
+.track-copy form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  margin-top: 24px;
+}
+.track-copy form .search-input.big {
+  width: 100%;
+  max-width: 420px;
+  margin: 0;
 }
 .tracking-privacy {
   display: flex;
@@ -2001,5 +2027,5 @@ footer p {
 .notification-list { max-height:355px; overflow:auto; }.notification-item { display:grid; grid-template-columns:30px 1fr 7px; gap:9px; padding:12px 14px; border-bottom:1px solid #ecece8; }.notification-item:hover { background:#f6f7fc; }.notification-item.unread { background:#f5f7ff; }.notification-icon { width:27px; height:27px; display:grid; place-items:center; background:#e8ebff; color:#2147d9; }.notification-text strong,.notification-text span,.notification-text small { display:block; }.notification-text strong { font-size:11px; }.notification-text span { color:#565856; font-size:10px; line-height:1.4; margin-top:1px; }.notification-text small { color:#888a87; font-size:9px; margin-top:3px; }.notification-unread-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); align-self:center; }.notification-popover footer { display:block; padding:10px 14px; background:#fafaf8; }.notification-popover footer a { font-size:10px; font-weight:600; text-decoration:underline; }
 .demo-banner { min-height:32px; padding:7px clamp(16px,4vw,60px); display:flex; align-items:center; justify-content:center; gap:8px; background:#eff2ff; color:#17275f; font-size:10px; }.demo-banner p { margin:0; }.demo-banner button { border:0; background:none; display:grid; padding:1px; color:inherit; }
 .payment-qr { text-align:center; padding:10px 0 5px; }.qr-grid { width:154px; height:154px; padding:10px; background:#fff; border:8px solid #111213; display:grid; grid-template-columns:repeat(11,1fr); gap:2px; margin:0 auto 18px; }.qr-grid i { background:#f1f1ed; }.qr-grid i.on { background:#111213; }.payment-qr h3 { font:600 22px "Source Serif 4",serif; margin:8px 0; }.payment-qr p { color:var(--muted); font-size:12px; max-width:350px; margin:0 auto 17px; }.payment-qr .resend { margin:13px auto 0; }
-.verified-heading { display:flex; align-items:center; justify-content:center; gap:7px; margin-bottom:8px; }.verified-heading svg { color:var(--good); }.verified-heading .aside-label { line-height:1; }.detail-button { margin-top:22px; width:100%; }.appeal-success .success-stamp { margin-bottom:28px; }.appeal-success .eyebrow { margin-top: 8px; }
+.verified-heading { display:flex; align-items:center; justify-content:center; gap:7px; margin-bottom:8px; }.verified-heading svg { color:var(--good); }.verified-heading .aside-label { line-height:1; }.detail-button { margin-top:22px; width:100%; }
 @media(max-width:800px){ .notification-popover { right:-42px; } .demo-banner { justify-content:flex-start; } .demo-banner p { line-height:1.35; } }
