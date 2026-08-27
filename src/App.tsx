@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Link,
   Route,
@@ -35,6 +35,7 @@ import { SignIn as SignInPage } from "./pages/SignIn";
 import { HelpPage } from "./pages/Help";
 import { applicationStages, appealGrounds, canAppeal, reachedStageIndex } from "./lib/lifecycle";
 import { Timeline } from "./components/Timeline";
+import { useChatbot } from "./components/chatbot/Chatbot";
 
 const defaultApplicant: Applicant = { name: "", email: "", phone: "", address1: "", address2: "", city: "", state: "", pin: "" };
 const filingSteps = ["Applicant details", "Public authority", "Your request", "Documents", "Review", "Payment"];
@@ -76,6 +77,7 @@ function Field({
 
 function FileRTI({ onAdd, applicantStart }: { onAdd: (app: Application) => void; applicantStart: Applicant }) {
   const nav = useNavigate();
+  const { setFormBridge } = useChatbot();
   const [eligible, setEligible] = useState<"central" | "other" | null>(null);
   const [acknowledged, setAcknowledged] = useState(false);
   const [step, setStep] = useState(0);
@@ -92,6 +94,16 @@ function FileRTI({ onAdd, applicantStart }: { onAdd: (app: Application) => void;
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState(false);
   const [submitted, setSubmitted] = useState<Application | null>(null);
+  useEffect(() => {
+    setFormBridge({
+      subject,
+      request,
+      authority: chosenAuthority,
+      selectAuthority: setChosenAuthority,
+      useSuggestion: setRequest,
+    });
+    return () => setFormBridge(undefined);
+  }, [setFormBridge, subject, request, chosenAuthority]);
   const updateApplicant = (key: keyof Applicant, value: string) =>
     setApplicant((current) => ({ ...current, [key]: value }));
   const validate = () => {
@@ -505,6 +517,7 @@ function RequestStep({
   setRequest,
   errors,
 }: any) {
+  const { improveDraft } = useChatbot();
   return (
     <>
       <div className="form-title">
@@ -551,6 +564,9 @@ function RequestStep({
           </p>
         </div>
       </div>
+      <button type="button" className="assistant-inline" onClick={improveDraft}>
+        <CircleHelp size={16} /> Improve with RTI Assistant
+      </button>
     </>
   );
 }
