@@ -1,10 +1,12 @@
 import { systemPrompt } from "./prompt.mjs";
 
 const GEMINI_FALLBACK_MODELS = [
-  "gemini-3.6-flash",
-  "gemini-3.7-flash",
+  "gemini-2.5-flash",
+  "gemini-2.0-flash",
+  "gemini-1.5-flash",
   "gemini-flash-latest",
-  "gemini-3.5-flash"
+  "gemini-2.5-pro",
+  "gemini-1.5-pro"
 ];
 
 async function callGemini({ apiKey, model, message, history, context }) {
@@ -135,7 +137,7 @@ export async function generateAiResponse({ message, history, context }) {
   }
 
   if (provider === "gemini" || (!process.env.AI_PROVIDER && geminiKey)) {
-    const model = process.env.GEMINI_MODEL || process.env.AI_MODEL || "gemini-3.6-flash";
+    const model = process.env.GEMINI_MODEL || process.env.AI_MODEL || "gemini-2.5-flash";
     return await callGemini({ apiKey: geminiKey || apiKey, model, message, history, context });
   }
 
